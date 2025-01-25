@@ -2,12 +2,14 @@
     {
       "name": "Алмазный пропуск",
       "price": 120,
-      "callbackdata": "diamonds:0"
+      "callbackdata": "diamonds:0",
+      "quantity": 100
     },
     {
       "name": "Сумеречный пропуск",
       "price": 635,
-      "callbackdata": "diamonds:1"
+      "callbackdata": "diamonds:1",
+      "quantity": 500
     },
     {
       "name": "8 алмазов",

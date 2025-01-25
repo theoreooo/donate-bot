@@ -2,7 +2,6 @@ package repositories
 
 import (
 	"donate-bot/models"
-	"log"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
@@ -41,11 +40,11 @@ func CreateDonateBonus(update tgbotapi.Update, referredDiamonds int64) (string, 
 func SetDonateStatusCompleted(donationID string) error {
 	var donation models.DonationHistory
 	if err := DB.Where("id", donationID).First(&donation).Error; err != nil {
-		log.Print(err)
+		return err
 	}
 	var user models.User
 	if err := DB.Where("telegram_id", donation.TelegramID).First(&user).Error; err != nil {
-		log.Print(err)
+		return err
 	}
 	user.TotalDiamonds += donation.Diamonds
 
@@ -61,7 +60,7 @@ func SetDonateStatusCompleted(donationID string) error {
 		for _, referral := range referrals {
 			var referrer models.User
 			if err := DB.Where("telegram_id", referral.ReferrerID).First(&referrer).Error; err != nil {
-				log.Print(err)
+				return err
 			}
 			referrer.ReferredDiamonds += float64(donation.Diamonds) / 100
 			referrer.TotalReferredDiamonds += donation.Diamonds / 100
@@ -82,7 +81,7 @@ func SetDonateStatusCompleted(donationID string) error {
 func SetDonateStatusCanceled(donationID string) error {
 	var donation models.DonationHistory
 	if err := DB.Where("id", donationID).First(&donation).Error; err != nil {
-		log.Print(err)
+		return err
 	}
 
 	donation.Status = "canceled"

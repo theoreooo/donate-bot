@@ -19,18 +19,4 @@ func Init(bot *tgbotapi.BotAPI) {
 	if err != nil {
 		log.Print(err)
 	}
-
-	// u := tgbotapi.NewUpdate(0)
-	// u.Timeout = 60
-	// updates := bot.GetUpdatesChan(u)
-
-	// for update := range updates {
-	// 	if update.CallbackQuery != nil {
-	// 		Callbacks(bot, update)
-	// 	} else if update.Message.IsCommand() {
-	// 		Commands(bot, update)
-	// 	} else {
-	// 		Messages(bot, update)
-	// 	}
-	// }
 }
