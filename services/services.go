@@ -125,7 +125,13 @@ func Help(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 }
 
 func Home(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
-	msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Вы вернулись в главное меню")
+	var chatID int64
+	if update.CallbackQuery != nil {
+		chatID = update.CallbackQuery.Message.Chat.ID
+	} else {
+		chatID = update.Message.Chat.ID
+	}
+	msg := tgbotapi.NewMessage(chatID, "Вы вернулись в главное меню")
 	msg.ReplyMarkup = keyboards.MainKeyboard()
 
 	if _, err := bot.Send(msg); err != nil {

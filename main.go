@@ -4,6 +4,7 @@ import (
 	"donate-bot/clients"
 	"donate-bot/config"
 	"donate-bot/handlers"
+
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -17,7 +18,12 @@ func main() {
 		AllowOrigins: "*",
 		AllowHeaders: "*",
 	}))
+
 	bot := clients.Init()
+
 	handlers.Init(bot)
+
+	app.Post("/webhook", handlers.WebhookHandler)
+
 	log.Fatal(app.Listen(":" + config.Config("PORT")))
 }
