@@ -96,7 +96,7 @@ func Help(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	- Партнерская программа - узнать о партнерской программе
 	- /home - открыть клавиатуру с командами
 
-	По всем вопросам обращаться к админу - @smog_kotoryi_smog
+	По всем вопросам обращаться к админу - @admin
 	`
 	sendBotMessage(bot, update.Message.Chat.ID, text, nil)
 }
@@ -322,7 +322,7 @@ func CanceledDonate(bot *tgbotapi.BotAPI, update tgbotapi.Update, donationID str
 		log.Print(err)
 	}
 
-	text = "Админ отклонил вашу оплату! Если произошла ошибка пишите админу @smog_kotoryi_smog\n"
+	text = "Админ отклонил вашу оплату! Если произошла ошибка пишите админу @admin\n"
 
 	sendBotMessage(bot, donation.TelegramID, text, keyboards.MainKeyboard())
 
