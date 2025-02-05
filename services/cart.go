@@ -28,17 +28,20 @@ var userCarts = make(map[int64]*Cart)
 var cartMu sync.Mutex
 
 func AddToCart(bot *tgbotapi.BotAPI, update tgbotapi.Update, itemID string) {
+	var err error
 	cartMu.Lock()
 	defer cartMu.Unlock()
 
 	chatID := update.CallbackQuery.Message.Chat.ID
 
-	catalog, err := config.LoadCatalog()
+	itemIDint, err := strconv.Atoi(itemID)
 	if err != nil {
 		log.Print(err)
 	}
 
-	itemIDint, err := strconv.Atoi(itemID)
+	var catalog []config.Item
+
+	catalog, err = config.LoadALlCatalog()
 	if err != nil {
 		log.Print(err)
 	}

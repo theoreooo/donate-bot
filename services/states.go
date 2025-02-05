@@ -16,7 +16,12 @@ var mu sync.Mutex
 func SetUserGameID(chatID int64, state, gameID string) {
 	mu.Lock()
 	defer mu.Unlock()
-	userStates[chatID] = &UserState{State: state, ItemID: 0, GameID: gameID}
+	if userState, exists := userStates[chatID]; exists {
+		userState.State = state
+		userState.GameID = gameID
+	} else {
+		userStates[chatID] = &UserState{State: state, ItemID: 0, GameID: gameID}
+	}
 }
 
 func GetUserGameID(chatID int64) string {
@@ -31,7 +36,11 @@ func GetUserGameID(chatID int64) string {
 func SetUserState(chatID int64, state string) {
 	mu.Lock()
 	defer mu.Unlock()
-	userStates[chatID] = &UserState{State: state, ItemID: 0}
+	if userState, exists := userStates[chatID]; exists {
+		userState.State = state
+	} else {
+		userStates[chatID] = &UserState{State: state, ItemID: 0}
+	}
 }
 
 func GetUserState(chatID int64) string {

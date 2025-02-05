@@ -51,6 +51,15 @@ func Callbacks(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 		return
 	}
 
+	if data == "zone_id_5" {
+		services.Catalog(bot, update, 5)
+		return
+	}
+	if data == "zone_id_4" {
+		services.Catalog(bot, update, 4)
+		return
+	}
+
 	if handler, exists := callbackRoutes[data]; exists {
 		handler(bot, update)
 	}

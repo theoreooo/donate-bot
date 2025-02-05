@@ -32,6 +32,9 @@ func ChangeGameIDKeyboard() tgbotapi.InlineKeyboardMarkup {
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("Изменить игровой ID", "change_game_id"),
 		),
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("Главное меню", "home"),
+		),
 	)
 	return gameID
 }
@@ -40,6 +43,9 @@ func WithdrawBonusKeyboard() tgbotapi.InlineKeyboardMarkup {
 	var gameID = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("Вывести бонусные алмазы", "withdraw_bonus"),
+		),
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("Главное меню", "home"),
 		),
 	)
 	return gameID
@@ -63,8 +69,21 @@ func SendGameIDKeyboard(gameID string) tgbotapi.ReplyKeyboardMarkup {
 	return cmdKeyboard
 }
 
-func CatalogKeyboard() tgbotapi.InlineKeyboardMarkup {
-	catalog, err := config.LoadCatalog()
+func ChooseIDKeyboard() tgbotapi.InlineKeyboardMarkup {
+	var chooseIDKeyboard = tgbotapi.NewInlineKeyboardMarkup(
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("ZONE ID из 5 цифр", "zone_id_5"),
+			tgbotapi.NewInlineKeyboardButtonData("ZONE ID из 4 цифр", "zone_id_4"),
+		),
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("Главное меню", "home"),
+		),
+	)
+	return chooseIDKeyboard
+}
+
+func CatalogKeyboard(zone int) tgbotapi.InlineKeyboardMarkup {
+	catalog, err := config.LoadCatalog(zone)
 	if err != nil {
 		log.Print(err)
 		return tgbotapi.InlineKeyboardMarkup{}
@@ -110,6 +129,9 @@ func ReviewsKeyboard() tgbotapi.InlineKeyboardMarkup {
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonURL("Отзывы", "t.me/donaterich"),
 		),
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("Главное меню", "home"),
+		),
 	)
 	return reviews
 }
@@ -118,6 +140,18 @@ func GetCartKeyboard() tgbotapi.InlineKeyboardMarkup {
 	var getCart = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("Корзина", "view_cart"),
+		),
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("Главное меню", "home"),
+		),
+	)
+	return getCart
+}
+
+func HomeKeyboard() tgbotapi.InlineKeyboardMarkup {
+	var getCart = tgbotapi.NewInlineKeyboardMarkup(
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("Главное меню", "home"),
 		),
 	)
 	return getCart

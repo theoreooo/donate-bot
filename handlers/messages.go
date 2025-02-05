@@ -9,7 +9,7 @@ import (
 type MessageHandler func(bot *tgbotapi.BotAPI, update tgbotapi.Update)
 
 var messageRoutes = map[string]MessageHandler{
-	"Каталог": services.Catalog,
+	"Каталог": services.ChooseServerID,
 	"Корзина": services.SendCart,
 	"Профиль": services.Profile,
 	"Партнерская программа": services.Partnership,

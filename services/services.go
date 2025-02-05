@@ -98,7 +98,7 @@ func Help(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 
 	По всем вопросам обращаться к админу - @admin
 	`
-	sendBotMessage(bot, update.Message.Chat.ID, text, nil)
+	sendBotMessage(bot, update.Message.Chat.ID, text, keyboards.HomeKeyboard())
 }
 
 func Home(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
@@ -202,10 +202,21 @@ func ConfirmedDonateBonus(bot *tgbotapi.BotAPI, update tgbotapi.Update, donation
 	}
 }
 
-func Catalog(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
-	text := "Каталог товаров. \nВыберите что хотите приобрести ниже"
+func ChooseServerID(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	text := "Выберите количество цифр в ZONE ID"
 
-	sendBotMessage(bot, update.Message.Chat.ID, text, keyboards.CatalogKeyboard())
+	sendBotMessage(bot, update.Message.Chat.ID, text, keyboards.ChooseIDKeyboard())
+}
+
+func Catalog(bot *tgbotapi.BotAPI, update tgbotapi.Update, zone int) {
+	var text string
+	if zone == 4 {
+		text = "Каталог товаров для ZONE ID 4. \nВыберите что хотите приобрести ниже"
+	} else {
+		text = "Каталог товаров для ZONE ID 5. \nВыберите что хотите приобрести ниже"
+	}
+
+	sendBotMessage(bot, update.CallbackQuery.Message.Chat.ID, text, keyboards.CatalogKeyboard(zone))
 }
 
 func ProcessPurchaseDiamonds(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
@@ -229,7 +240,7 @@ func ConfirmDonate(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	SetUserGameID(update.Message.Chat.ID, "", update.Message.Text)
 	finalPrice, _ := FinalPriceAndDiamonds(update.Message.Chat.ID)
 
-	text := fmt.Sprintf("ID получателя: %s\nРеквизиты для оплаты:\nСумма: %d сом\nМбанк:+996 000 000 000\nПолучатель: Виоле\nПосле оплаты обязательно нажмите кнопку ниже для подтверждения",
+	text := fmt.Sprintf("ID получателя: %s\nРеквизиты для оплаты:\nСумма: %d сом\nМбанк:+996 000 000 000\nПолучатель: Виоле\nПосле оплаты обязательно нажмите кнопку ниже для подтверждения\nПомощь - /help",
 		update.Message.Text, finalPrice,
 	)
 	sendBotMessage(bot, update.Message.Chat.ID, text, keyboards.ConfirmPurchaseKeyboard())

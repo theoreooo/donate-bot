@@ -1,0 +1,87 @@
+[
+    {
+      "name": "Алмазный пропуск",
+      "price": 120,
+      "callbackdata": "diamonds:14",
+      "quantity": 100
+    },
+    {
+      "name": "Сумеречный пропуск",
+      "price": 635,
+      "callbackdata": "diamonds:15",
+      "quantity": 500
+    },
+    {
+      "name": "8 алмазов",
+      "price": 11,
+      "callbackdata": "diamonds:16",
+      "quantity": 8
+    },
+    {
+      "name": "32+3 алмаза",
+      "price": 40,
+      "callbackdata": "diamonds:17",
+      "quantity": 32
+    },
+    {
+      "name": "80+8 алмазов",
+      "price": 99,
+      "callbackdata": "diamonds:18",
+      "quantity": 80
+    },
+    {
+      "name": "120+12 алмазов",
+      "price": 144,
+      "callbackdata": "diamonds:19",
+      "quantity": 120
+    },
+    {
+      "name": "239+25 алмазов",
+      "price": 289,
+      "callbackdata": "diamonds:20",
+      "quantity": 239
+    },
+    {
+      "name": "396+44 алмазов",
+      "price": 489,
+      "callbackdata": "diamonds:21",
+      "quantity": 396
+    },
+    {
+      "name": "633+101 алмазов",
+      "price": 789,
+      "callbackdata": "diamonds:22",
+      "quantity": 633
+    },
+    {
+      "name": "791+142 алмазов",
+      "price": 979,
+      "callbackdata": "diamonds:23",
+      "quantity": 791
+    },
+    {
+      "name": "1186+224 алмазов",
+      "price": 1469,
+      "callbackdata": "diamonds:24",
+      "quantity": 1186
+    },
+    {
+      "name": "1581+300 алмазов",
+      "price": 1969,
+      "callbackdata": "diamonds:25",
+      "quantity": 1581
+    },
+    {
+      "name": "2371+474 алмазов",
+      "price": 2949,
+      "callbackdata": "diamonds:26",
+      "quantity": 2371
+    },
+    {
+      "name": "5136+1027 алмазов",
+      "price": 6400,
+      "callbackdata": "diamonds:27",
+      "quantity": 5136
+    }
+]
+  
